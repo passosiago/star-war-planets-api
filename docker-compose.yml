@@ -1,0 +1,24 @@
+version: '3'
+services:
+  flask:
+    build: .
+    container_name: flask
+    environment:
+      MONGODB_URI: mongodb://mongo-star-wars:27017/
+      STAR_WARS_API: https://swapi.dev/api/planets/
+    depends_on:
+      - mongo-star-wars
+    networks:
+      - star-wars
+    ports:
+      - 8080:8080
+
+  mongo-star-wars:
+    image: mongo
+    container_name: mongo-star-wars
+    networks:
+      - star-wars
+
+networks:
+  star-wars:
+    driver: bridge
