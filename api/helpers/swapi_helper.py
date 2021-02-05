@@ -1,5 +1,6 @@
 import requests
 import os
+from api.exceptions.planet_unavailable_exception import PlanetUnavailableException
 
 
 def build_search_url(planet_name):
@@ -17,7 +18,7 @@ def enrich_planet_data(planet):
     result = request_planet(planet['name'])
     result = result["results"]
     if len(result) == 0:
-        return 0
+        raise PlanetUnavailableException()
     planet_info = result[0]
     planet["movie_appearances_counter"] = len(planet_info['films'])
     return planet
