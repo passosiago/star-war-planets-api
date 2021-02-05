@@ -28,11 +28,16 @@ def planet_by_name(name):
 @planet_blueprint.route("/planets/<string:id>",  methods=['DELETE'])
 def delete(id):
     service.delete_planet_by_id(id)
-    return jsonify(), 200
+    return jsonify(), 204
 
 
 @planet_blueprint.route("/planets",  methods=['POST'])
 def add_planet():
     planet = request.json
     planet_id = service.create_planet(planet)
-    return jsonify(planet_id), 200
+    return jsonify(planet_id), 201
+
+
+@planet_blueprint.errorhandler(Exception)
+def api_error_handler(error):
+    return error.to_response()

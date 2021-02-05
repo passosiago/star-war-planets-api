@@ -1,6 +1,8 @@
 import logging
 from api.db_access.planet_db_access import PlanetDbAccess
 from api.helpers.swapi_helper import enrich_planet_data
+from api.exceptions.planet_already_exist_exception import PlanetAlreadyExistException
+from api.validators.planet_structure_validator import validate_planet_structure
 from bson.json_util import dumps
 
 
@@ -11,10 +13,11 @@ class PlanetService:
 
     def create_planet(self, planet: dict) -> dict:
         logging.debug(f"[PLANET SERVICE] Creating planet")
+        validate_planet_structure(planet)
         found_planet = self.__db_access.find_planet_by_name(planet["name"])
 
         if found_planet is not None:
-            raise Exception()
+            raise PlanetAlreadyExistException()
         planet = enrich_planet_data(planet)
 
         planet = self.__db_access.add_planet(planet)
