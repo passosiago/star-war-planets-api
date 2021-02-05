@@ -22,9 +22,9 @@ $ python3 -u -m pytest test/
 |    /api/planets/:id     | DELETE | Remove Planet |
 
 
-# Listar Planetas - GET - localhost:8080/api/planets
+## Listar Planetas - GET - localhost:8080/api/planets
 
-## Response
+### Response - Status 200
 ```json
 [
     {
@@ -39,9 +39,9 @@ $ python3 -u -m pytest test/
 ]
 
 ```
-# Recuperar planet pelo id - GET - localhost:8080/api/planets/<:id>
+## Recuperar planet pelo id - GET - localhost:8080/api/planets/<:id>
 
-## Response
+### Response - Status 200
 ```json
 
 {
@@ -56,9 +56,9 @@ $ python3 -u -m pytest test/
 
 ```
 
-# Recuperar planet pelo nome - GET - localhost:8080/api/planets/name/<:name>
+## Recuperar planet pelo nome - GET - localhost:8080/api/planets/name/<:name>
 
-## Response
+### Response - Status 200
 ```json
 
 {
@@ -71,9 +71,9 @@ $ python3 -u -m pytest test/
     "movie_appearances_counter": 5
 }
 ```
-# Criar planeta - POST - localhost:8080/api/planets
+## Criar planeta - POST - localhost:8080/api/planets
 
-## Request Body
+### Request Body
 ```json
 {
     "name": "Alderann",
@@ -82,10 +82,17 @@ $ python3 -u -m pytest test/
 }
 
 ```
-## Response
+### Response - 201
 ```json
 {
     "_id": "601d6669ca2e985a264775fa"
 }
 
+```
+
+## Deletar planeta - DELETE - localhost:8080/api/planets/<:id>
+
+### Response - Status 204
+```json
+Empty reponse
 ```
