@@ -12,12 +12,18 @@ services:
       - star-wars
     ports:
       - 8080:8080
+    links:
+      - mongo-star-wars
+    volumes:
+      - .:/app
 
   mongo-star-wars:
     image: mongo
     container_name: mongo-star-wars
     networks:
       - star-wars
+    volumes:
+    - $HOME/data/mongo-star-wars:/data/db
 
 networks:
   star-wars:
