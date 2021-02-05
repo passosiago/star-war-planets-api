@@ -70,6 +70,30 @@ class TestPlanetServices:
         })
 
     @mock.patch("api.services.planet_services.PlanetDbAccess")
+    def test_should_return_empty_object_when_find_planet_by_name_response_is_None(self, mock_db_access):
+
+        mock_find_planet_by_name = mock.MagicMock()
+        mock_db_access.return_value.find_planet_by_name = mock_find_planet_by_name
+        mock_find_planet_by_name.return_value = None
+        service = PlanetService()
+        result = service.get_planet_by_name("some_name")
+        mock_find_planet_by_name.assert_called_once_with(
+            "some_name")
+        assert result == {}
+
+    @mock.patch("api.services.planet_services.PlanetDbAccess")
+    def test_should_return_empty_object_when_find_planet_by_id_response_is_None(self, mock_db_access):
+
+        mock_find_planet_by_id = mock.MagicMock()
+        mock_db_access.return_value.find_planet_by_id = mock_find_planet_by_id
+        mock_find_planet_by_id.return_value = None
+        service = PlanetService()
+        result = service.get_planet_by_id("some_id")
+        mock_find_planet_by_id.assert_called_once_with(
+            "some_id")
+        assert result == {}
+
+    @mock.patch("api.services.planet_services.PlanetDbAccess")
     def test_should_call_find_planet_by_id(self, mock_db_access):
 
         mock_find_planet_by_id = mock.MagicMock()

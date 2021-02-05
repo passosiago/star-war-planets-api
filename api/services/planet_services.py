@@ -28,13 +28,15 @@ class PlanetService:
 
     def get_planet_by_id(self, planet_id: str) -> dict:
         logging.debug(f"[PLANET SERVICE] Finding planet by id - {planet_id}")
-        planet = dumps(self.__db_access.find_planet_by_id(planet_id))
+        planet = self.__db_access.find_planet_by_id(planet_id)
+        planet = dumps(planet) if planet is not None else {}
         return planet
 
     def get_planet_by_name(self, planet_name: str) -> dict:
         logging.debug(
             f"[PLANET SERVICE] Finding planet by name - {planet_name}")
-        planet = dumps(self.__db_access.find_planet_by_name(planet_name))
+        planet = self.__db_access.find_planet_by_name(planet_name)
+        planet = dumps(planet) if planet is not None else {}
         return planet
 
     def delete_planet_by_id(self, planet_id: str) -> None:
