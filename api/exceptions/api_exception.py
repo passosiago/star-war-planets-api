@@ -1,5 +1,3 @@
-from json import dumps
-
 from flask import Response
 
 
