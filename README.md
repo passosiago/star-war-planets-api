@@ -1,6 +1,5 @@
 # star-war-planets-api
 
-# Desafio B2W
 ## Inicialização do Projeto
 
 ```bash
